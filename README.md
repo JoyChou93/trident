@@ -11,7 +11,7 @@
 
 ### 验证代码
 
-合法URL返回true，非法URL返回false
+合法URL返回true，非法URL返回false。
 
 ```java
 security checkUrl = new security();
@@ -24,6 +24,7 @@ System.out.println(ret);
 ## SSRF
 
 JAVA默认dns请求会有30s的缓存，所以默认不存在dns rebind问题。除非重新设置ttl为0。
+
 ### 验证逻辑
 
 1. 取URL的IP
@@ -39,6 +40,7 @@ JAVA默认dns请求会有30s的缓存，所以默认不存在dns rebind问题。
 URL只支持HTTP协议。
 
 ```java
+security checkUrl = new security();
 ret = checkUrl.checkSSRF("http://127.0.0.1");
 System.out.println(ret);
 ```
