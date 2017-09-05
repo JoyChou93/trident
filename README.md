@@ -35,8 +35,8 @@ JAVA默认dns请求会有30s的缓存，所以默认不存在dns rebind问题。
 
 ### 验证代码
 
-如果是内网IP，返回false，表示checkSSRF不通过。
-否则返回true。即合法返回true。
+如果是内网IP，返回false，表示checkSSRF不通过，否则返回true，即合法返回true。
+
 URL只支持HTTP协议。
 
 ```java
