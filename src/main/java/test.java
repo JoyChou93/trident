@@ -1,6 +1,9 @@
 /**
- * Created by Viarus on 17/9/5.
+ * Author: JoyChou
+ * Mail: viarus#qq.com
+ * Date: 2017.09.05
  */
+
 public class test {
     public static void main(String[] args) throws Exception {
         security checkUrl = new security();
