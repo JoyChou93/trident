@@ -19,7 +19,7 @@ String[] urlWList = {"joychou.com", "joychou.me"};
 Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
 ```
 
-## SSRF
+## checkSSRF
 
 JAVA默认dns请求会有30s的缓存，所以默认不存在dns rebind问题。除非重新设置ttl为0。
 
