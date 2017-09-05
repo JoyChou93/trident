@@ -7,9 +7,9 @@
 验证代码
 
 ```java
-    main checkUrl = new main();
-    String[] urlWList = {"joychou.com", "joychou.me"};
-    Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
-    System.out.println(ret);
+security checkUrl = new security();
+String[] urlWList = {"joychou.com", "joychou.me"};
+Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
+System.out.println(ret);
 
 ```
