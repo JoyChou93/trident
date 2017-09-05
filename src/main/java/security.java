@@ -77,7 +77,7 @@ public class security {
                 // 判断当前请求的URL是否是内网ip
                 Boolean bRet = isInnerIpFromUrl(finalUrl);
                 if (bRet) {
-                    return true;
+                    return false;
                 }
 
                 connection = (HttpURLConnection) new URL(finalUrl).openConnection();
@@ -98,9 +98,9 @@ public class security {
             } while (connection.getResponseCode() != HttpURLConnection.HTTP_OK);
             connection.disconnect();
         } catch (Exception e) {
-            return false;
+            return true;
         }
-        return false;
+        return true;
     }
 
     /*

@@ -10,7 +10,7 @@ public class test {
         // URL白名单组件测试
         security checkUrl = new security();
         String[] urlWList = {"joychou.com", "joychou.me"};
-        Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
+        Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.org", urlWList);
         System.out.println(ret);
 
         // SSRF组件测试
