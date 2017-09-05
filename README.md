@@ -1,5 +1,3 @@
-# trident
+# Trident (三叉戟)
 
-## Java Code Security Component
-
-> Java代码安全组件
+> Java Code Security Component （JAVA代码安全组件）
