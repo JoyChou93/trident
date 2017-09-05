@@ -5,7 +5,7 @@
 import java.net.URL;
 import com.google.common.net.InternetDomainName;
 
-public class main {
+public class security {
 
     /*
         * 检测传入的URL是否在白名单的域名里
