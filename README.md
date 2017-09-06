@@ -20,9 +20,9 @@
 合法URL返回true，非法URL返回false。
 
 ```java
-security checkUrl = new security();
+security urlCheck = new security();
 String[] urlWList = {"joychou.com", "joychou.me"};
-Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
+Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.me", urlWList);
 ```
 
 ## checkSSRF
@@ -42,8 +42,9 @@ Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
 URL只支持HTTP协议。
 
 ```java
+security urlCheck = new security();
 String url = "http://dns_rebind.joychou.me";
-ret = checkUrl.checkSSRF(url);
+ret = urlCheck.checkSSRF(url);
 if (ret){
     // curl url
 }

@@ -9,14 +9,14 @@ public class test {
     public static void main(String[] args) throws Exception {
 
         // URL白名单组件测试
-        security checkUrl = new security();
+        security urlCheck = new security();
         String[] urlWList = {"joychou.com", "joychou.me"};
-        Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.org", urlWList);
+        Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
         System.out.println(ret);
 
         // SSRF组件测试
         String url = "http://dns_rebind.joychou.me";
-        ret = checkUrl.checkSSRF(url);
+        ret = urlCheck.checkSSRF(url);
         if (ret){
             String con = Request.Get(url).execute().returnContent().toString();
             System.out.println(con);
