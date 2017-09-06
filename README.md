@@ -45,7 +45,7 @@ URL只支持HTTP协议。
 String url = "http://dns_rebind.joychou.me";
 ret = checkUrl.checkSSRF(url);
 if (ret){
-    # curl url
+    // curl url
 }
 else {
     System.out.println("Bad boy. The url is illegal");
