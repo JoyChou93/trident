@@ -1,4 +1,4 @@
-# Trident (三叉戟)
+# Trident（三叉戟）
 
 > Java Code Security Component （JAVA代码安全组件）
 
@@ -27,16 +27,6 @@ Boolean ret = checkUrl.checkUrlWlist("http://test.joychou.me", urlWList);
 
 ## checkSSRF
 
-JAVA默认DNS请求会有30s的缓存，所以默认不存在DNS Rebind问题。除非重新设置TTL为0。
-
-如果有大佬能绕过，麻烦提个ISSUE或者PR。
-
-我自己测试，以下方法均没绕过。但是，用DNS Rebind方法在调试的时候，均可以测试成功，所以我怀疑设置TTL为0未成功。
-
-- DNS Rebind（手动设置JAVA的TTL为0）
-- 域名解析2个A记录地址（外网+内网）
-
-
 
 ### 验证逻辑
 
@@ -52,6 +42,22 @@ JAVA默认DNS请求会有30s的缓存，所以默认不存在DNS Rebind问题。
 URL只支持HTTP协议。
 
 ```java
-security checkUrl = new security();
-ret = checkUrl.checkSSRF("http://127.0.0.1");
+String url = "http://dns_rebind.joychou.me";
+ret = checkUrl.checkSSRF(url);
+if (ret){
+    # curl url
+}
+else {
+    System.out.println("Bad boy. The url is illegal");
+}
 ```
+
+### 绕过姿势
+
+
+以上代码在设置TTL为0的情况，可以用以下方法绕过 :
+
+1. DNS Rebind（手动设置JAVA的TTL为0）
+2. 域名解析2个A记录地址（分别为外网和内网）
+
+也就是说，只要Java不设置TTL为0，该代码逻辑上不存在被绕过风险。

@@ -14,5 +14,12 @@
             <artifactId>guava</artifactId>
             <version>21.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+
     </dependencies>
 </project>

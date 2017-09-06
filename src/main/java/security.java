@@ -85,7 +85,7 @@ public class security {
                 connection.setUseCaches(false); // 设置为false，手动处理跳转，可以拿到每个跳转的URL
                 connection.setConnectTimeout(3*1000); // 设置连接超时时间为3s
                 //connection.setRequestMethod("GET");
-                connection.connect(); // 会解析dns
+                connection.connect(); // send dns request
                 int responseCode = connection.getResponseCode(); // 发起网络请求
                 if (responseCode >= 300 && responseCode < 400) {
                     String redirectedUrl = connection.getHeaderField("Location");
@@ -136,7 +136,7 @@ public class security {
     */
     public static String DomainToIP(String domain) throws IOException{
         try {
-            InetAddress IpAddress = InetAddress.getByName(domain);
+            InetAddress IpAddress = InetAddress.getByName(domain); //  send dns request
             return IpAddress.getHostAddress();
         }
         catch (Exception e) {

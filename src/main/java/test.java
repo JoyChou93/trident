@@ -3,6 +3,7 @@
  * Mail: viarus#qq.com
  * Date: 2017.09.05
  */
+import org.apache.http.client.fluent.Request;
 
 public class test {
     public static void main(String[] args) throws Exception {
@@ -14,8 +15,14 @@ public class test {
         System.out.println(ret);
 
         // SSRF组件测试
-
-        ret = checkUrl.checkSSRF("http://127.0.0.1");
-        System.out.println(ret);
+        String url = "http://dns_rebind.joychou.me";
+        ret = checkUrl.checkSSRF(url);
+        if (ret){
+            String con = Request.Get(url).execute().returnContent().toString();
+            System.out.println(con);
+        }
+        else {
+            System.out.println("Bad boy. The url is illegal");
+        }
     }
 }
