@@ -92,7 +92,7 @@ public class security {
                     if (null == redirectedUrl)
                         break;
                     finalUrl = redirectedUrl;
-                    System.out.println("redirected url: " + finalUrl);
+                    // System.out.println("redirected url: " + finalUrl);
                 } else
                     break;
             } while (connection.getResponseCode() != HttpURLConnection.HTTP_OK);
