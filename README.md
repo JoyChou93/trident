@@ -2,6 +2,12 @@
 
 > Java Code Security Component （JAVA代码安全组件）
 
+目前支持的功能如下：
+
+1. URL白名单验证
+2. checkSSRF
+
+
 ## URL白名单验证
 
 ### 验证逻辑
@@ -25,7 +31,7 @@ JAVA默认DNS请求会有30s的缓存，所以默认不存在DNS Rebind问题。
 
 如果有大佬能绕过，麻烦提个ISSUE或者PR。
 
-我自己测试，以下方法均没绕过。但是，用DNS Rebind方法在调试的时候，均可以测试成功，所以我怀疑设置TTL位0未成功。
+我自己测试，以下方法均没绕过。但是，用DNS Rebind方法在调试的时候，均可以测试成功，所以我怀疑设置TTL为0未成功。
 
 - DNS Rebind（手动设置JAVA的TTL为0）
 - 域名解析2个A记录地址（外网+内网）
