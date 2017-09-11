@@ -87,7 +87,7 @@ public class security {
                 //connection.setRequestMethod("GET");
                 connection.connect(); // send dns request
                 int responseCode = connection.getResponseCode(); // 发起网络请求
-                if (responseCode >= 300 && responseCode < 400) {
+                if (responseCode >= 300 && responseCode <=307 && responseCode != 304 && responseCode != 306) {
                     String redirectedUrl = connection.getHeaderField("Location");
                     if (null == redirectedUrl)
                         break;
