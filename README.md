@@ -4,9 +4,12 @@
 
 目前支持的功能如下：
 
-1. URL白名单验证
-2. checkSSRF
-
+1. URL白名单验证 （已完成）
+2. checkSSRF （已完成）
+3. checkReferer （未做）
+4. csrfToken （未做）
+5. xssEncode （未做）
+6. getRealIP （未做）
 
 ## URL白名单验证
 
