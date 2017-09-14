@@ -9,16 +9,16 @@
 3. checkReferer （未做）
 4. csrfToken （未做）
 5. xssEncode （未做）
-6. getRealIP （未做）
+6. getRealIP （已完成）
 
-## URL白名单验证
+## 1. URL白名单验证
 
-### 验证逻辑
+### 1.1 验证逻辑
 
 1. 取URL一级域名
 2. 判断是否在域名白名单列表内
 
-### 验证代码
+### 1.2 验证代码
 
 合法URL返回true，非法URL返回false。
 
@@ -31,10 +31,10 @@ System.out.println(ret);
 
 ```
 
-## checkSSRF
+## 2. checkSSRF
 
 
-### 验证逻辑
+### 2.1 验证逻辑
 
 1. 取URL的Host
 2. 取Host的IP
@@ -42,7 +42,7 @@ System.out.println(ret);
 4. 请求URL
 5. 如果有跳转，取出跳转URL，执行第1步
 
-### 验证代码
+### 2.2 验证代码
 
 如果是内网IP，返回false，表示checkSSRF不通过，否则返回true，即合法返回true。
 URL只支持HTTP协议。
@@ -61,14 +61,14 @@ else {
 }
 ```
 
-### 绕过姿势
+### 2.3 绕过姿势
 
 
 以上代码在设置TTL为0的情况，可以用DNS Rebinding绕过。
 
 但是，只要Java不设置TTL为0，该代码逻辑上不存在被绕过风险。
 
-## 获取真实IP
+## 3. 获取真实IP
 
 
 用这份代码，必须保证，前面Proxy有把真实IP放到X-Real-IP头。

@@ -4,9 +4,9 @@ import java.net.InetAddress;
 import java.net.URL;
 
 /**
- * Author: JoyChou
- * Mail: viarus#qq.com
- * Date: 2017.09.05
+ * date: 2017.09.05
+ * author: JoyChou (https://joychou.org)
+ * mail : viarus#qq.com
  */
 
 public class SSRF {

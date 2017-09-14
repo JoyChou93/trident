@@ -2,8 +2,9 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * date: 17/9/14.
- * author: JoyChou(https://joychou.org)
+ * date: 2017.09.14
+ * author: JoyChou (https://joychou.org)
+ * mail : viarus#qq.com
  */
 
 public class IPAddress {
@@ -12,7 +13,7 @@ public class IPAddress {
      * @param request
      * @return
      */
-    public static String getIPFromRealIPHeader(HttpServletRequest request){
+    public static String getRealIP(HttpServletRequest request){
         String ip = request.getHeader("X-Real-IP");
         if (StringUtils.isNotBlank("ip")) {
             return ip;
