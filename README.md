@@ -23,9 +23,12 @@
 合法URL返回true，非法URL返回false。
 
 ```java
-security urlCheck = new security();
+// URL白名单组件测试
+checkURL urlCheck = new checkURL();
 String[] urlWList = {"joychou.com", "joychou.me"};
-Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.me", urlWList);
+Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
+System.out.println(ret);
+
 ```
 
 ## checkSSRF
@@ -45,11 +48,13 @@ Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.me", urlWList);
 URL只支持HTTP协议。
 
 ```java
-security urlCheck = new security();
+// SSRF组件测试
+SSRF check = new SSRF();
 String url = "http://dns_rebind.joychou.me";
-ret = urlCheck.checkSSRF(url);
+ret = check.checkSSRF(url);
 if (ret){
-    // curl url
+    String con = Request.Get(url).execute().returnContent().toString();
+    System.out.println(con);
 }
 else {
     System.out.println("Bad boy. The url is illegal");
@@ -59,9 +64,12 @@ else {
 ### 绕过姿势
 
 
-以上代码在设置TTL为0的情况，可以用以下方法绕过 :
+以上代码在设置TTL为0的情况，可以用DNS Rebinding绕过。
 
-1. DNS Rebind
-2. 域名解析2个A记录地址（分别为外网和内网）
+但是，只要Java不设置TTL为0，该代码逻辑上不存在被绕过风险。
 
-也就是说，只要Java不设置TTL为0，该代码逻辑上不存在被绕过风险。
+## 获取真实IP
+
+
+用这份代码，必须保证，前面Proxy有把真实IP放到X-Real-IP头。
+

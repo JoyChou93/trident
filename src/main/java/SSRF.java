@@ -1,72 +1,20 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
+
 /**
  * Author: JoyChou
  * Mail: viarus#qq.com
  * Date: 2017.09.05
  */
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-import com.google.common.net.InternetDomainName;
-
-public class security {
-
-    /*
-        * 检测传入的URL是否在白名单的域名里
-        * url：需要检测的URL
-        * urlWList: 一级域名的域名列表，比如String[] urlWList = {"joychou.com", "joychou.me"};
-        * 返回值：合法URL返回true，非法URL返回false
-     */
-    public static Boolean checkUrlWlist(String url, String[] urlWList) {
-        try {
-            URL u = new URL(url);
-            // 只允许http和https的协议
-            if (!u.getProtocol().startsWith("http") && !u.getProtocol().startsWith("https")) {
-                return  false;
-            }
-            // 获取域名，并转为小写
-            String host = u.getHost().toLowerCase();
-            // 获取一级域名
-            String rootDomain = InternetDomainName.from(host).topPrivateDomain().toString();
-
-            for (String whiteUrl: urlWList){
-                if (rootDomain.equals(whiteUrl)) {
-                    return true;
-                }
-            }
-            return false;
-
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-
-    /*
-        * 判断一个URL的IP是否是内网IP
-        * 如果是内网IP，返回true
-        * 非内网IP，返回false
-    */
-    public static boolean isInnerIpFromUrl(String url) throws Exception {
-        String domain = getUrlDomain(url);
-        if (domain.equals("")) {
-            return true; // 异常URL当成内网IP等非法URL处理
-        }
-
-        String ip = DomainToIP(domain);
-        if(ip.equals("")){
-            return true; // 如果域名转换为IP异常，则认为是非法URL
-        }
-        return isInnerIp(ip);
-    }
-
-
-    /*
-        * check SSRF (判断逻辑为判断URL的IP是否是内网IP)
-        * 如果是内网IP，返回false，表示checkSSRF不通过。否则返回true。即合法返回true
-        * URL只支持HTTP协议
-        * 设置了访问超时时间为3s
+public class SSRF {
+    /**
+     * check SSRF (判断逻辑为判断URL的IP是否是内网IP)
+     * 如果是内网IP，返回false，表示checkSSRF不通过。否则返回true。即合法返回true
+     * URL只支持HTTP协议
+     * 设置了访问超时时间为3s
      */
     public static Boolean checkSSRF(String url) {
 
@@ -103,13 +51,34 @@ public class security {
         return true;
     }
 
-    /*
-        内网IP：
-        10.0.0.1 - 10.255.255.254       (10.0.0.0/8)
-        192.168.0.1 - 192.168.255.254   (192.168.0.0/16)
-        127.0.0.1 - 127.255.255.254     (127.0.0.0/8)
-        172.16.0.1 - 172.31.255.254     (172.16.0.0/12)
-    */
+
+
+    /**
+     * 判断一个URL的IP是否是内网IP
+     * 如果是内网IP，返回true
+     * 非内网IP，返回false
+     */
+    public static boolean isInnerIpFromUrl(String url) throws Exception {
+        String domain = getUrlDomain(url);
+        if (domain.equals("")) {
+            return true; // 异常URL当成内网IP等非法URL处理
+        }
+
+        String ip = DomainToIP(domain);
+        if(ip.equals("")){
+            return true; // 如果域名转换为IP异常，则认为是非法URL
+        }
+        return isInnerIp(ip);
+    }
+
+
+    /**
+     * 内网IP：
+     * 10.0.0.1 - 10.255.255.254       (10.0.0.0/8)
+     * 192.168.0.1 - 192.168.255.254   (192.168.0.0/16)
+     * 127.0.0.1 - 127.255.255.254     (127.0.0.0/8)
+     * 172.16.0.1 - 172.31.255.254     (172.16.0.0/12)
+     */
     public static boolean isInnerIp(String strIP) throws IOException {
         try{
             String[] ipArr = strIP.split("\\.");
@@ -128,12 +97,13 @@ public class security {
         }
 
     }
-    /*
-        * 域名转换为IP
-        * 会将各种进制的ip转为正常ip
-        * 167772161转换为10.0.0.1
-        * 127.0.0.1.xip.io转换为127.0.0.1
-    */
+
+    /**
+     * 域名转换为IP
+     * 会将各种进制的ip转为正常ip
+     * 167772161转换为10.0.0.1
+     * 127.0.0.1.xip.io转换为127.0.0.1
+     */
     public static String DomainToIP(String domain) throws IOException{
         try {
             InetAddress IpAddress = InetAddress.getByName(domain); //  send dns request
@@ -144,10 +114,10 @@ public class security {
         }
     }
 
-    /*
-        从URL中获取域名
-        限制为http/https协议
-    */
+    /**
+     * 从URL中获取域名
+     * 限制为http/https协议
+     */
     public static String getUrlDomain(String url) throws IOException{
         try {
             URL u = new URL(url);
@@ -158,10 +128,6 @@ public class security {
         } catch (Exception e) {
             return "";
         }
-
-    }
-
-    public static void main(String[] args) throws Exception {
 
     }
 }

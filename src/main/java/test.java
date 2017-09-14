@@ -9,14 +9,15 @@ public class test {
     public static void main(String[] args) throws Exception {
 
         // URL白名单组件测试
-        security urlCheck = new security();
+        checkURL urlCheck = new checkURL();
         String[] urlWList = {"joychou.com", "joychou.me"};
         Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
         System.out.println(ret);
 
         // SSRF组件测试
+        SSRF check = new SSRF();
         String url = "http://dns_rebind.joychou.me";
-        ret = urlCheck.checkSSRF(url);
+        ret = check.checkSSRF(url);
         if (ret){
             String con = Request.Get(url).execute().returnContent().toString();
             System.out.println(con);
@@ -24,5 +25,7 @@ public class test {
         else {
             System.out.println("Bad boy. The url is illegal");
         }
+
+
     }
 }
