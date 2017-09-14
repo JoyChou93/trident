@@ -15,7 +15,7 @@ public class IPAddress {
      */
     public static String getRealIP(HttpServletRequest request){
         String ip = request.getHeader("X-Real-IP");
-        if (StringUtils.isNotBlank("ip")) {
+        if (StringUtils.isNotBlank(ip)) {
             return ip;
         }else {
             String remoteAddr = request.getRemoteAddr();
