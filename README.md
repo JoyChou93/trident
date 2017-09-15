@@ -73,3 +73,4 @@ else {
 
 用这份代码，必须保证，前面Proxy有把真实IP放到X-Real-IP头。
 
+造成漏洞的代码和配置，详情查看[https://joychou.org/web/how-to-get-real-ip.html](https://joychou.org/web/how-to-get-real-ip.html)
