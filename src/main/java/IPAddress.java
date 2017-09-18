@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * date: 2017.09.14
  * author: JoyChou (https://joychou.org)
- * mail : viarus#qq.com
+ * mail : joychou@joychou.org
  */
 
 public class IPAddress {

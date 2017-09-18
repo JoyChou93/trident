@@ -1,7 +1,7 @@
 /**
  * date: 2017.09.05
  * author: JoyChou (https://joychou.org)
- * mail : viarus#qq.com
+ * mail : joychou@joychou.org
  */
 
 
