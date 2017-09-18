@@ -13,28 +13,30 @@
 
 ## URL白名单验证
 
-验证逻辑
+URL白名单绕过可查考[https://joychou.org/web/url-whitelist-bypass.html](https://joychou.org/web/url-whitelist-bypass.html)
 
-1. 取URL一级域名
-2. 判断是否在域名白名单列表内
+#### 验证逻辑
 
-验证代码
+    1. 取URL一级域名
+    2. 判断是否在域名白名单列表内
 
-合法URL返回true，非法URL返回false。
+#### 验证代码
+ 
+    合法URL返回true，非法URL返回false。
 
-```java
-// URL白名单组件测试
-checkURL urlCheck = new checkURL();
-String[] urlWList = {"joychou.com", "joychou.me"};
-Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
-System.out.println(ret);
-
-```
+    ```java
+    // URL白名单组件测试
+    checkURL urlCheck = new checkURL();
+    String[] urlWList = {"joychou.com", "joychou.me"};
+    Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
+    System.out.println(ret);
+    
+    ```
 
 ## checkSSRF
 
 
-验证逻辑
+#### 验证逻辑
 
 1. 取URL的Host
 2. 取Host的IP
@@ -42,7 +44,7 @@ System.out.println(ret);
 4. 请求URL
 5. 如果有跳转，取出跳转URL，执行第1步
 
-验证代码
+#### 验证代码
 
 如果是内网IP，返回false，表示checkSSRF不通过，否则返回true，即合法返回true。
 URL只支持HTTP协议。
@@ -61,7 +63,7 @@ else {
 }
 ```
 
-绕过姿势
+#### 绕过姿势
 
 
 以上代码在设置TTL为0的情况，可以用DNS Rebinding绕过。
