@@ -13,25 +13,27 @@
 
 ## URL白名单验证
 
+#### URL绕过
+
 URL白名单绕过可查考[https://joychou.org/web/url-whitelist-bypass.html](https://joychou.org/web/url-whitelist-bypass.html)
 
 #### 验证逻辑
 
-    1. 取URL一级域名
-    2. 判断是否在域名白名单列表内
+1. 取URL一级域名
+2. 判断是否在域名白名单列表内
 
 #### 验证代码
  
-    合法URL返回true，非法URL返回false。
+合法URL返回true，非法URL返回false。
 
-    ```java
-    // URL白名单组件测试
-    checkURL urlCheck = new checkURL();
-    String[] urlWList = {"joychou.com", "joychou.me"};
-    Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
-    System.out.println(ret);
-    
-    ```
+```java
+// URL白名单组件测试
+checkURL urlCheck = new checkURL();
+String[] urlWList = {"joychou.com", "joychou.me"};
+Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
+System.out.println(ret);
+
+```
 
 ## checkSSRF
 
@@ -46,8 +48,7 @@ URL白名单绕过可查考[https://joychou.org/web/url-whitelist-bypass.html](h
 
 #### 验证代码
 
-如果是内网IP，返回false，表示checkSSRF不通过，否则返回true，即合法返回true。
-URL只支持HTTP协议。
+如果是内网IP，返回false，表示checkSSRF不通过，否则返回true，即合法返回true。URL只支持HTTP协议。
 
 ```java
 // SSRF组件测试
