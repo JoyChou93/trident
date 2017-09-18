@@ -71,6 +71,8 @@ else {
 
 但是，只要Java不设置TTL为0，该代码逻辑上不存在被绕过风险。
 
+具体绕过细节可查看[https://joychou.org/web/use-dnsrebinding-to-bypass-ssrf-in-java.html](https://joychou.org/web/use-dnsrebinding-to-bypass-ssrf-in-java.html)
+
 ## 获取真实IP
 
 
