@@ -1,22 +1,22 @@
 /**
- * Author: JoyChou
- * Mail: viarus#qq.com
+ * Author: JoyChou <https://joychou.org>
+ * Mail: joychou@joychou.org
  * Date: 2017.09.05
  */
 import org.apache.http.client.fluent.Request;
 
-public class test {
+public class Test {
     public static void main(String[] args) throws Exception {
 
         // URL白名单组件测试
-        checkURL urlCheck = new checkURL();
+        CheckURL urlCheck = new CheckURL();
         String[] urlWList = {"joychou.com", "joychou.me"};
         Boolean ret = urlCheck.checkUrlWlist("http://test.joychou.org", urlWList);
         System.out.println(ret);
 
         // SSRF组件测试
         SSRF check = new SSRF();
-        String url = "http://dns_rebind.joychou.me";
+        String url = "http://127.0.0.1.xip.io";
         ret = check.checkSSRF(url);
         if (ret){
             String con = Request.Get(url).execute().returnContent().toString();
@@ -25,6 +25,8 @@ public class test {
         else {
             System.out.println("Bad boy. The url is illegal");
         }
+
+        // 获取客户端IP测试
 
 
     }
